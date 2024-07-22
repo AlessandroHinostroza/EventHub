@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           ls -la
-          cd javademo/my-app
+          cd javaDemo/my-app
           mvn install
       - run: echo "lesgoski"
   verifica-cartella:
