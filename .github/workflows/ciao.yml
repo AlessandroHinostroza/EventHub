@@ -2,7 +2,7 @@ name: ciao
 run-name: ciao da parte di ${{ github.actor }}
 on: [push]
 jobs:
-  ciao:
+  ciao-fa-cose:
     runs-on: ubuntu-latest
     steps:
       - name: Set up JDK for x64
@@ -17,18 +17,15 @@ jobs:
           ls -la
           cd javaDemo/my-app
           mvn install
-      - run: echo "lesgoski"
-  verifica-cartella:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set up JDK for x64
-        # https://github.com/actions/setup-java
-        uses: actions/setup-java@v4
+      - run: java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
+      - uses: actions/upload-artifact@v4
         with:
-          java-version: '21.0.3'
-          distribution: 'temurin'
-      - run: mvn -v
-      - uses: actions/checkout@v4
-      - run: |
-          ls -la
-      - run: echo "verifica cartella"
+          # Name of the artifact to upload.
+          # Optional. Default is 'artifact'
+          name: my-app-1.0-SNAPSHOT.jar
+
+          # A file, directory or wildcard pattern that describes what to upload
+          # Required.
+          path: javaDemo/my-app/target/my-app-1.0-SNAPSHOT.jar
+        working-directory: javaDemo/my-app
+      - run: echo "lesgoski"
