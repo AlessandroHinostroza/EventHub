@@ -2,10 +2,9 @@ name: ciao
 run-name: ciao da parte di ${{ github.actor }}
 on: [push]
 jobs:
-  ciao-fa-cose:
+  ciao:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Fineeeeeeeeeeeeeeeeeeeeeeeeeeee"
       - name: Set up JDK for x64
         # https://github.com/actions/setup-java
         uses: actions/setup-java@v4
@@ -13,17 +12,23 @@ jobs:
           java-version: '21.0.3'
           distribution: 'temurin'
       - run: mvn -v
-      - name: Checkout
-      - uses: actions/checkout@v4.1.7
-      - run: ls -la
+      - uses: actions/checkout@v4
       - run: |
-          cd javaDemo/my-app
-          mvn install 
-      - run: 
-          java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
-          working-directory: javaDemo/my-app
-
-  ciao:
+          ls -la
+          cd javademo/my-app
+          mvn install
+      - run: echo "lesgoski"
+  verifica-cartella:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Fineeeeeeeeeeeeeeeeeeeeeeeeeeee2"
+      - name: Set up JDK for x64
+        # https://github.com/actions/setup-java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21.0.3'
+          distribution: 'temurin'
+      - run: mvn -v
+      - uses: actions/checkout@v4
+      - run: |
+          ls -la
+      - run: echo "verifica cartella"
